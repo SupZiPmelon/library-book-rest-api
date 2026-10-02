@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Book - REST API</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>📚 Library Book (Reading List)</h1>
+      <p>Mini Project: REST API with Node.js & Express</p>
+    </header>
+
+    <div class="stats-bar">
+      <span>ทั้งหมด: <strong id="stat-total">0</strong></span>
+      <span>กำลังอ่าน: <strong id="stat-reading">0</strong></span>
+      <span>อ่านจบแล้ว: <strong id="stat-completed">0</strong></span>
+      <span>ยังไม่อ่าน: <strong id="stat-unread">0</strong></span>
+    </div>
+
+    <div class="main-layout">
+      <!-- ฟอร์มเพิ่ม/แก้ไข -->
+      <section class="card form-section">
+        <h2 id="form-title">➕ เพิ่มหนังสือใหม่</h2>
+        <form id="book-form">
+          <input type="hidden" id="book-id">
+          
+          <label>ชื่อหนังสือ *</label>
+          <input type="text" id="title" required placeholder="เช่น Clean Code">
+
+          <label>ชื่อผู้แต่ง *</label>
+          <input type="text" id="author" required placeholder="เช่น Robert C. Martin">
+
+          <label>หมวดหมู่ *</label>
+          <select id="category" required>
+            <option value="Technology">Technology</option>
+            <option value="Self-Development">Self-Development</option>
+            <option value="Finance">Finance</option>
+            <option value="Fiction">Fiction</option>
+          </select>
+
+          <label>สถานะการอ่าน</label>
+          <select id="status">
+            <option value="unread">อยากอ่าน (Unread)</option>
+            <option value="reading">กำลังอ่าน (Reading)</option>
+            <option value="completed">อ่านจบแล้ว (Completed)</option>
+          </select>
+
+          <label>คะแนน (1 - 5)</label>
+          <select id="rating">
+            <option value="5">⭐⭐⭐⭐⭐ (5 ดาว)</option>
+            <option value="4">⭐⭐⭐⭐ (4 ดาว)</option>
+            <option value="3">⭐⭐⭐ (3 ดาว)</option>
+            <option value="2">⭐⭐ (2 ดาว)</option>
+            <option value="1">⭐ (1 ดาว)</option>
+          </select>
+
+          <label>บันทึกย่อ / รีวิว</label>
+          <textarea id="notes" rows="2" placeholder="ข้อคิดจากเล่มนี้..."></textarea>
+
+          <div class="btn-group">
+            <button type="submit" id="btn-submit" class="btn btn-save">บันทึกข้อมูล</button>
+            <button type="button" id="btn-cancel" class="btn btn-cancel" style="display:none;">ยกเลิก</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- รายการหนังสือและการกรอง -->
+      <section class="card list-section">
+        <h2>📖 รายการหนังสือในคลัง</h2>
+        
+        <div class="filters">
+          <input type="text" id="search-input" placeholder="🔍 ค้นหาชื่อ/ผู้แต่ง...">
+          <select id="filter-status">
+            <option value="All">ทุกสถานะ</option>
+            <option value="unread">อยากอ่าน</option>
+            <option value="reading">กำลังอ่าน</option>
+            <option value="completed">อ่านจบแล้ว</option>
+          </select>
+          <select id="filter-category">
+            <option value="All">ทุกหมวดหมู่</option>
+            <option value="Technology">Technology</option>
+            <option value="Self-Development">Self-Development</option>
+            <option value="Finance">Finance</option>
+            <option value="Fiction">Fiction</option>
+          </select>
+        </div>
+
+        <div id="books-list" class="books-list"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
